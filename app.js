@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const hbs = require('hbs');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./graphql/schema');
 
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
 
@@ -36,12 +38,18 @@ const firmRoutes = require('./routes/firms');
 app.use('/books', bookRoutes);
 app.use('/firms', firmRoutes);
 
-// 6. Головна сторінка
+// 6. GraphQL
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true
+}));
+
+// 7. Головна сторінка
 app.get('/', (req, res) => {
     res.redirect('/books');
 });
 
-// 7. Запуск сервера
+// 8. Запуск сервера
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Сервер запущено на http://localhost:${PORT}`);
