@@ -1,0 +1,20 @@
+<h2>Редагувати книгу</h2>
+
+<form action="/books/edit/{{book._id}}" method="POST" style="text-align:center;">
+    <label>Назва:<br><input type="text" name="title" value="{{book.title}}" required></label><br><br>
+    <label>Автор:<br><input type="text" name="author" value="{{book.author}}"></label><br><br>
+    <label>Адреса автора:<br><input type="text" name="author_address" value="{{book.author_address}}"></label><br><br>
+    <label>Рік видання:<br><input type="number" name="year_published" value="{{book.year_published}}"></label><br><br>
+    <label>Адреса видавництва:<br><input type="text" name="publisher_address"
+                                         value="{{book.publisher_address}}"></label><br><br>
+    <label>Ціна:<br><input type="number" step="0.01" name="price" value="{{book.price}}"></label><br><br>
+    <label>Фірма:<br>
+        <select name="firm_id">
+            {{#each firms}}
+                <option value="{{this._id}}" {{#if (eq this._id ../book.firm_id)}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
+        </select>
+    </label><br><br>
+
+    <button type="submit">Зберегти зміни</button>
+</form>
