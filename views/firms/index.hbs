@@ -1,0 +1,14 @@
+<h2>Список фірм</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Назва</th>
+        <th>Адреса</th>
+    </tr>
+    {{#each firms}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.address}}</td>
+        </tr>
+    {{/each}}
+</table>
