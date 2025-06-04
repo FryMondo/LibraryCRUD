@@ -1,0 +1,28 @@
+<h2>Список книг</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Назва</th>
+        <th>Автор</th>
+        <th>Рік</th>
+        <th>Ціна</th>
+        <th>Фірма</th>
+        <th style="width: 10%">Дії</th>
+    </tr>
+    {{#each books}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.author}}</td>
+            <td>{{this.year_published}}</td>
+            <td>{{this.price}} грн</td>
+            <td>{{this.firm_id.name}}</td>
+            <td style="white-space: nowrap;">
+                <a href="/books/edit/{{this._id}}" class="btn-edit">Редагувати</a>
+                <form action="/books/delete/{{this._id}}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-delete" onclick="return confirm('Видалити цю книгу?')">Видалити
+                    </button>
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+</table>
